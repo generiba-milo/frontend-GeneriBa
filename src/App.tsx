@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing";
+import LandingNew from "./pages/LandingNew";
 import Marketplace from "./pages/Marketplace";
 import GigDetail from "./pages/GigDetail";
 import DAO from "./pages/DAO";
@@ -25,7 +26,8 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Landing />} />
+          <Route path="/" element={<LandingNew />} />
+          <Route path="/landing-old" element={<Landing />} />
           <Route path="/marketplace" element={<Marketplace />} />
           <Route path="/gig/:id" element={<GigDetail />} />
           <Route path="/dao" element={<DAO />} />
