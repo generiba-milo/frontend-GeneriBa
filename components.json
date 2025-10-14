@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "$schema": "https://ui.shadcn.com/schema.json",
   "style": "default",
@@ -18,3 +19,25 @@
     "hooks": "@/hooks"
   }
 }
+=======
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "default",
+  "rsc": false,
+  "tsx": true,
+  "tailwind": {
+    "config": "tailwind.config.ts",
+    "css": "src/index.css",
+    "baseColor": "slate",
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/lib/utils",
+    "ui": "@/components/ui",
+    "lib": "@/lib",
+    "hooks": "@/hooks"
+  }
+}
+>>>>>>> 0d7abc9c87b19a02b20f81b2a7832446f1f39235
