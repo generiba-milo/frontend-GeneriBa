@@ -1,4 +1,5 @@
-import Navbar from "@/components/Navbar";
+import { FloatingNavbar } from "@/components/aceternity/FloatingNavbar";
+import { navItems } from "@/components/navItems";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -16,7 +17,7 @@ const GigDetail = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
+  <FloatingNavbar navItems={navItems} />
       
       <div className="pt-24 pb-20 px-4">
         <div className="container mx-auto max-w-6xl">

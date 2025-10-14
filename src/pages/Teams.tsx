@@ -1,6 +1,8 @@
-import Navbar from "@/components/Navbar";
+import { FloatingNavbar } from "@/components/aceternity/FloatingNavbar";
+import { navItems } from "@/components/navItems";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
+import { CardSpotlight } from "@/components/aceternity/CardSpotlight";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -59,7 +61,7 @@ const Teams = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
+      <FloatingNavbar navItems={navItems} />
       
       <div className="pt-24 pb-20 px-4">
         <div className="container mx-auto max-w-7xl">
@@ -116,7 +118,7 @@ const Teams = () => {
           {/* Teams Grid */}
           <div className="grid md:grid-cols-2 gap-6">
             {MOCK_TEAMS.map((team, i) => (
-              <Card 
+              <CardSpotlight
                 key={team.id}
                 className="p-6 border-border bg-card hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300 animate-fade-in-up"
                 style={{ animationDelay: `${i * 100}ms` }}
@@ -186,7 +188,7 @@ const Teams = () => {
                     <MessageCircle className="h-4 w-4" />
                   </Button>
                 </div>
-              </Card>
+              </CardSpotlight>
             ))}
           </div>
 

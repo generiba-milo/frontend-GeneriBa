@@ -27,7 +27,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LandingNew />} />
-          <Route path="/landing-old" element={<Landing />} />
+          <Route path="/landing" element={<Landing />} />
           <Route path="/marketplace" element={<Marketplace />} />
           <Route path="/gig/:id" element={<GigDetail />} />
           <Route path="/dao" element={<DAO />} />

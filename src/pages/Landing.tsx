@@ -1,75 +1,90 @@
-import Navbar from "@/components/Navbar";
+import { FloatingNavbar } from "@/components/aceternity/FloatingNavbar";
+import { navItems } from "@/components/navItems";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Wallet, Shield, Users, Zap, TrendingUp, Award, ArrowRight, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
+import HeroHighlight, { Highlight } from "@/components/aceternity/HeroHighlight";
+
+// Simple background lines component
+const BackgroundLines: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <div className="relative">
+    <div
+      aria-hidden="true"
+      className="absolute inset-0 pointer-events-none z-0"
+      style={{
+        background: "repeating-linear-gradient(90deg, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 80px)"
+      }}
+    />
+    <div className="relative z-10">{children}</div>
+  </div>
+);
 
 const Landing = () => {
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
+  <FloatingNavbar navItems={navItems} />
       
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 px-4 overflow-hidden">
-        {/* Background Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-transparent to-transparent" />
-        <div className="absolute top-20 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-primary-glow/20 rounded-full blur-[120px]" />
-        
-        <div className="container mx-auto relative z-10">
-          <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in-up">
-            {/* Badge */}
-            <Badge className="bg-primary/20 text-primary border-primary/30 px-4 py-1">
-              <Shield className="h-3 w-3 mr-2" />
-              DAO-Powered • KYC-Free • Trustless
-            </Badge>
+        <BackgroundLines>
+          <HeroHighlight>
+            <div className="container mx-auto relative z-10">
+              <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in-up">
+                {/* Badge */}
+                <Badge className="bg-primary/20 text-primary border-primary/30 px-4 py-1">
+                  <Shield className="h-3 w-3 mr-2" />
+                  DAO-Powered • KYC-Free • Trustless
+                </Badge>
 
-            {/* Headline */}
-            <h1 className="font-display text-5xl md:text-7xl font-bold leading-tight">
-              Fair Work.{" "}
-              <span className="bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
-                Open Future.
-              </span>
-            </h1>
+                {/* Headline */}
+                <h1 className="font-display text-5xl md:text-7xl font-bold leading-tight">
+                  <Highlight>The DAO for Freelancers</Highlight>
+                  <span className="block bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
+                    Earn on-chain. Build reputation. Work without borders.
+                  </span>
+                </h1>
 
-            {/* Subheadline */}
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
-              Decentralized gig marketplace. Earn in crypto. Build trust through DAO. No ID required.
-            </p>
+                {/* Subheadline */}
+                <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
+                  A trustless, DAO-governed marketplace where freelancers and teams build, collaborate, and get paid in crypto.
+                </p>
 
-            {/* CTA */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 shadow-xl shadow-primary/30 group">
-                <Wallet className="mr-2 h-5 w-5" />
-                Connect Wallet & Start
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              <Link to="/marketplace">
-                <Button size="lg" variant="outline" className="border-primary/30 hover:bg-primary/10">
-                  Browse Gigs
-                </Button>
-              </Link>
+                {/* CTA */}
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                  <Button size="lg" className="bg-primary hover:bg-primary/90 shadow-xl shadow-primary/30 group">
+                    <Wallet className="mr-2 h-5 w-5" />
+                    Connect Wallet & Start
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                  <Link to="/marketplace">
+                    <Button size="lg" variant="outline" className="border-primary/30 hover:bg-primary/10">
+                      Browse Gigs
+                    </Button>
+                  </Link>
+                </div>
+
+                {/* Stats Bar */}
+                <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto pt-8">
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-primary">$125K+</div>
+                    <div className="text-sm text-muted-foreground">Paid Out</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-primary">1,200+</div>
+                    <div className="text-sm text-muted-foreground">Users</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-primary">0</div>
+                    <div className="text-sm text-muted-foreground">IDs Required</div>
+                  </div>
+                </div>
+              </div>
             </div>
-
-            {/* Stats Bar */}
-            <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto pt-8">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary">$125K+</div>
-                <div className="text-sm text-muted-foreground">Paid Out</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary">1,200+</div>
-                <div className="text-sm text-muted-foreground">Users</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary">0</div>
-                <div className="text-sm text-muted-foreground">IDs Required</div>
-              </div>
-            </div>
-          </div>
-        </div>
+          </HeroHighlight>
+        </BackgroundLines>
       </section>
 
       {/* Features Grid */}

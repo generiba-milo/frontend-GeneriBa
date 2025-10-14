@@ -1,9 +1,11 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { MagneticButton, GlowButton } from "@/components/aceternity/AnimatedButton";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Clock, Users, Shield, DollarSign } from "lucide-react";
 import { Link } from "react-router-dom";
+import { ThreeDCard } from "@/components/aceternity/ThreeDCard";
 
 interface GigCardProps {
   id: string;
@@ -32,7 +34,10 @@ const GigCard = ({
 }: GigCardProps) => {
   return (
     <Link to={`/gig/${id}`}>
-      <Card className="group relative overflow-hidden border border-border bg-gradient-to-br from-card to-card/50 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1">
+      <ThreeDCard
+        containerClassName="group relative overflow-hidden"
+        className="border border-border bg-gradient-to-br from-card to-card/50 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1 w-full"
+      >
         {/* Trust Badge */}
         <div className="absolute top-4 right-4 z-10">
           <Badge variant="secondary" className="bg-primary/20 text-primary border-primary/30">
@@ -102,11 +107,13 @@ const GigCard = ({
             </div>
           </div>
 
-          <Button className="w-full bg-primary hover:bg-primary/90 shadow-lg shadow-primary/20" size="sm">
-            Apply Now
-          </Button>
+          <MagneticButton className="w-full">
+            <Button className="w-full bg-primary hover:bg-primary/90 shadow-lg shadow-primary/20" size="sm">
+              Apply Now
+            </Button>
+          </MagneticButton>
         </div>
-      </Card>
+  </ThreeDCard>
     </Link>
   );
 };
