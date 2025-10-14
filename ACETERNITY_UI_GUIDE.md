@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Aceternity UI Landing Page - Implementation Guide
 
 ## Overview
@@ -323,7 +322,6 @@ if (scrollYProgress.get() < 0.05) { // Change this value
 **Created with:** React 18, TypeScript, Framer Motion 12, Tailwind CSS 3, shadcn/ui
 **Build Status:** ✅ Successful (585 KB, 175 KB gzipped)
 **Routes:** `/` (new landing), `/landing-old` (original)
-=======
 # Aceternity UI Landing Page - Implementation Guide
 
 ## Overview
@@ -648,4 +646,3 @@ if (scrollYProgress.get() < 0.05) { // Change this value
 **Created with:** React 18, TypeScript, Framer Motion 12, Tailwind CSS 3, shadcn/ui
 **Build Status:** ✅ Successful (585 KB, 175 KB gzipped)
 **Routes:** `/` (new landing), `/landing-old` (original)
->>>>>>> 0d7abc9c87b19a02b20f81b2a7832446f1f39235

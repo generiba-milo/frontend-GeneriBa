@@ -23,11 +23,13 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     // default behavior: enable splash3d when variant is 'default' unless explicitly disabled
     const useSplash = typeof splash3d === "boolean" ? splash3d : variant === "default";
 
-    if (useSplash) {
+  if (useSplash) {
       // If asChild is used, render the Slot content inside the Splash3dButton
       if (asChild) {
+        // cast onClick to the flexible event signature Splash3dButton expects
+        const splashOnClick = rest.onClick as unknown as ((e: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>) => void) | undefined;
         return (
-          <Splash3dButton className={classNames} onClick={rest.onClick} disabled={rest.disabled}>
+          <Splash3dButton className={classNames} onClick={splashOnClick} disabled={rest.disabled}>
             <Comp ref={ref as unknown as React.Ref<HTMLButtonElement>} {...(rest as ButtonProps)}>
               {children}
             </Comp>
@@ -36,8 +38,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       }
 
       // Normal case: render the button children/content inside the Splash3dButton
+      const splashOnClick = rest.onClick as unknown as ((e: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>) => void) | undefined;
       return (
-        <Splash3dButton className={classNames} onClick={rest.onClick} disabled={rest.disabled}>
+        <Splash3dButton className={classNames} onClick={splashOnClick} disabled={rest.disabled}>
           {/* keep markup that matches previous visual layout */}
           <span className={"inline-flex items-center justify-center"}>{children}</span>
         </Splash3dButton>

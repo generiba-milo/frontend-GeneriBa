@@ -228,12 +228,21 @@ const ShaderMaterial = ({
           preparedUniforms[uniformName] = { value: uniform.value, type: "1fv" };
           break;
         case "uniform3fv":
-          preparedUniforms[uniformName] = {
-            value: uniform.value.map((v: number[]) =>
-              new THREE.Vector3().fromArray(v)
-            ),
-            type: "3fv",
-          };
+          if (Array.isArray(uniform.value)) {
+            preparedUniforms[uniformName] = {
+              value: (uniform.value as number[][]).map((v) =>
+                new THREE.Vector3().fromArray(v),
+              ),
+              type: "3fv",
+            };
+          } else {
+            // fallback: if it's a single numeric vector (number[]), use it; otherwise provide a default
+            const maybeArray = Array.isArray(uniform.value) ? (uniform.value as number[]) : [0, 0, 0];
+            preparedUniforms[uniformName] = {
+              value: [new THREE.Vector3().fromArray(maybeArray)],
+              type: "3fv",
+            };
+          }
           break;
         case "uniform2f":
           preparedUniforms[uniformName] = {

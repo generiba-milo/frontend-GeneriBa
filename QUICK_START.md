@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Quick Start Guide - Aceternity UI Landing Page
 
 ## 🚀 What's New
@@ -162,7 +161,6 @@ Last build: **Successful** ✅
 ---
 
 **Need help?** Check the detailed guide in `ACETERNITY_UI_GUIDE.md`
-=======
 # Quick Start Guide - Aceternity UI Landing Page
 
 ## 🚀 What's New
@@ -326,4 +324,3 @@ Last build: **Successful** ✅
 ---
 
 **Need help?** Check the detailed guide in `ACETERNITY_UI_GUIDE.md`
->>>>>>> 0d7abc9c87b19a02b20f81b2a7832446f1f39235

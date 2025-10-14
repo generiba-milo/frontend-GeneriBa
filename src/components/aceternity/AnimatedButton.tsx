@@ -1,13 +1,12 @@
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { ButtonHTMLAttributes } from "react";
+import { Button, ButtonProps } from "@/components/ui/button";
 
 export const MagneticButton = ({
   children,
   className,
   ...props
-}: ButtonHTMLAttributes<HTMLButtonElement> & { className?: string }) => {
+}: ButtonProps & { className?: string }) => {
   return (
     <motion.div
       whileHover={{ scale: 1.05 }}
@@ -33,7 +32,7 @@ export const GlowButton = ({
   children,
   className,
   ...props
-}: ButtonHTMLAttributes<HTMLButtonElement> & { className?: string }) => {
+}: ButtonProps & { className?: string }) => {
   return (
     <motion.div
       whileHover={{ scale: 1.02 }}

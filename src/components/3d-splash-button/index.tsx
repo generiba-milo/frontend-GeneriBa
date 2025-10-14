@@ -111,7 +111,7 @@ const Splash3dButton = ({
     return ele;
   }
 
-  async function animation(e: React.MouseEvent<HTMLButtonElement>) {
+  async function animation(e: unknown) {
     if (!scope.current) return;
     const t: AnimationOptions = { duration: 0.4, ease: "easeOut" };
     const wrapper = scope.current.querySelector("#splash-wrapper");
@@ -130,8 +130,7 @@ const Splash3dButton = ({
         typeof (obj as Record<string, unknown>).clientY === "number"
       );
     };
-
-    const coords = isMouseLike(e) ? (e as unknown as { clientX: number; clientY: number }) : null;
+    const coords = isMouseLike(e) ? (e as { clientX: number; clientY: number }) : null;
     const clickX = coords ? `${coords.clientX - bounding.left}px` : "50%";
     const clickY = coords ? `${coords.clientY - bounding.top}px` : "50%";
 
@@ -159,15 +158,15 @@ const Splash3dButton = ({
   return (
     // render a non-button wrapper so consumers can place actual <button> inside (avoids nested-button invalid HTML)
     <div
-      ref={scope}
-      role="button"
-      tabIndex={disabled ? -1 : 0}
-  aria-disabled={disabled ? "true" : "false"}
+  ref={scope}
+  role="button"
+  tabIndex={disabled ? -1 : 0}
+  aria-disabled={disabled ? true : undefined}
       className={cn(
         "group relative cursor-pointer",
         disabled && "pointer-events-none opacity-60",
       )}
-      onClick={(e) => handleClick(e as unknown as React.MouseEvent<HTMLButtonElement>)}
+      onClick={(e) => handleClick(e)}
       onKeyDown={(e) => {
         if (disabled) return;
         if (e.key === "Enter" || e.key === " ") {
@@ -175,7 +174,7 @@ const Splash3dButton = ({
           // synthesize a mouse-like event for the animation
           handlePress();
           playAudio();
-          animation(e as unknown as React.MouseEvent<HTMLElement>);
+          animation(e);
           if (onClick) onClick(e as unknown as React.KeyboardEvent<HTMLElement>);
         }
       }}
@@ -208,7 +207,7 @@ export default Splash3dButton;
 const usePress = (duration = 34, debounceTime = 34) => {
   const [isActive, setIsActive] = useState(false);
   const lastPressTime = useRef(0);
-  const timeoutRef = useRef<NodeJS.Timeout>(null);
+  const timeoutRef = useRef<number | null>(null);
 
   const handlePress = useCallback(() => {
     const now = Date.now();
@@ -217,15 +216,22 @@ const usePress = (duration = 34, debounceTime = 34) => {
     lastPressTime.current = now;
     setIsActive(true);
 
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    timeoutRef.current = setTimeout(() => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    timeoutRef.current = window.setTimeout(() => {
       setIsActive(false);
+      timeoutRef.current = null;
     }, duration);
   }, [duration, debounceTime]);
 
   useEffect(() => {
     return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
     };
   }, []);
 

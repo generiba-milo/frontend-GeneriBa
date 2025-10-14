@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import js from "@eslint/js";
 import globals from "globals";
 import reactHooks from "eslint-plugin-react-hooks";
@@ -25,7 +24,6 @@ export default tseslint.config(
     },
   },
 );
-=======
 import js from "@eslint/js";
 import globals from "globals";
 import reactHooks from "eslint-plugin-react-hooks";
@@ -52,4 +50,3 @@ export default tseslint.config(
     },
   },
 );
->>>>>>> 0d7abc9c87b19a02b20f81b2a7832446f1f39235

@@ -147,11 +147,14 @@ const PostGig = () => {
                           placeholder="500"
                           className="bg-background border-border"
                         />
-                        <select className="px-4 py-2 rounded-md bg-background border border-border">
-                          <option>USDC</option>
-                          <option>ETH</option>
-                          <option>SOL</option>
-                        </select>
+                        <div>
+                          <Label htmlFor="currency" className="sr-only">Currency</Label>
+                          <select id="currency" aria-label="Currency" className="px-4 py-2 rounded-md bg-background border border-border">
+                            <option>USDC</option>
+                            <option>ETH</option>
+                            <option>SOL</option>
+                          </select>
+                        </div>
                       </div>
                     </div>
 
