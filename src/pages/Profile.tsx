@@ -14,24 +14,21 @@ import {
   CheckCircle2, Clock, DollarSign, Users,
   Wallet, Settings
 } from "lucide-react";
-
 const Profile = () => {
   return (
     <div className="min-h-screen bg-background">
   <FloatingNavbar navItems={navItems} />
-      
       <div className="pt-24 pb-20 px-4">
         <div className="container mx-auto max-w-6xl">
-          {/* Header */}
+          {}
           <div className="mb-8 space-y-4 animate-fade-in">
             <div className="flex items-center gap-2">
               <User className="h-8 w-8 text-primary" />
               <h1 className="font-display text-4xl font-bold">Profile & Settings</h1>
             </div>
           </div>
-
           <div className="grid lg:grid-cols-3 gap-8">
-            {/* Profile Card */}
+            {}
             <div className="space-y-6">
               <Card className="p-6 border-border bg-card">
                 <div className="text-center space-y-4">
@@ -40,7 +37,6 @@ const Profile = () => {
                       0x
                     </AvatarFallback>
                   </Avatar>
-                  
                   <div>
                     <div className="font-mono text-sm text-muted-foreground mb-2">
                       0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb
@@ -56,14 +52,12 @@ const Profile = () => {
                       </Badge>
                     </div>
                   </div>
-
                   <Button variant="outline" className="w-full border-primary/30 hover:bg-primary/10">
                     <Edit2 className="mr-2 h-4 w-4" />
                     Edit Avatar
                   </Button>
                 </div>
-
-                {/* Quick Stats */}
+                {}
                 <div className="mt-6 pt-6 border-t border-border space-y-3">
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">Trust Score</span>
@@ -86,8 +80,7 @@ const Profile = () => {
                   </div>
                 </div>
               </Card>
-
-              {/* Badges */}
+              {}
               <Card className="p-6 border-border bg-card">
                 <h3 className="font-semibold mb-4 flex items-center gap-2">
                   <Award className="h-5 w-5 text-primary" />
@@ -113,8 +106,7 @@ const Profile = () => {
                 </div>
               </Card>
             </div>
-
-            {/* Main Content */}
+            {}
             <div className="lg:col-span-2">
               <Tabs defaultValue="info" className="space-y-6">
                 <TabsList className="bg-card border border-border">
@@ -123,7 +115,6 @@ const Profile = () => {
                   <TabsTrigger value="reviews">Reviews</TabsTrigger>
                   <TabsTrigger value="settings">Settings</TabsTrigger>
                 </TabsList>
-
                 <TabsContent value="info" className="space-y-6">
                   <Card className="p-6 border-border bg-card">
                     <h3 className="font-display font-semibold text-xl mb-4">Basic Information</h3>
@@ -136,7 +127,6 @@ const Profile = () => {
                           className="bg-background border-border mt-1"
                         />
                       </div>
-                      
                       <div>
                         <Label htmlFor="bio">Bio</Label>
                         <Textarea 
@@ -145,7 +135,6 @@ const Profile = () => {
                           className="bg-background border-border mt-1 min-h-[100px]"
                         />
                       </div>
-
                       <div>
                         <Label htmlFor="location">Location (Optional)</Label>
                         <Input 
@@ -154,7 +143,6 @@ const Profile = () => {
                           className="bg-background border-border mt-1"
                         />
                       </div>
-
                       <div>
                         <Label htmlFor="website">Website / Portfolio</Label>
                         <Input 
@@ -163,21 +151,18 @@ const Profile = () => {
                           className="bg-background border-border mt-1"
                         />
                       </div>
-
                       <Button className="bg-primary hover:bg-primary/90">
                         Save Changes
                       </Button>
                     </div>
                   </Card>
                 </TabsContent>
-
                 <TabsContent value="skills" className="space-y-6">
                   <Card className="p-6 border-border bg-card">
                     <h3 className="font-display font-semibold text-xl mb-4">Your Skills</h3>
                     <p className="text-sm text-muted-foreground mb-4">
                       Add skills to help clients find you for relevant gigs
                     </p>
-                    
                     <div className="flex flex-wrap gap-2 mb-6">
                       {[
                         "React", "TypeScript", "Solidity", "Web3", "UI/UX",
@@ -192,7 +177,6 @@ const Profile = () => {
                         </Badge>
                       ))}
                     </div>
-
                     <div className="flex gap-2">
                       <Input 
                         placeholder="Add a new skill..."
@@ -204,7 +188,6 @@ const Profile = () => {
                     </div>
                   </Card>
                 </TabsContent>
-
                 <TabsContent value="reviews" className="space-y-4">
                   <Card className="p-6 border-border bg-card">
                     <h3 className="font-display font-semibold text-xl mb-6">Client Reviews</h3>
@@ -263,7 +246,6 @@ const Profile = () => {
                     </div>
                   </Card>
                 </TabsContent>
-
                 <TabsContent value="settings" className="space-y-6">
                   <Card className="p-6 border-border bg-card">
                     <h3 className="font-display font-semibold text-xl mb-4 flex items-center gap-2">
@@ -280,7 +262,6 @@ const Profile = () => {
                           </Button>
                         </div>
                       </div>
-
                       <div>
                         <Label>Preferred Payment Method</Label>
                         <div className="mt-2 space-y-2">
@@ -297,7 +278,6 @@ const Profile = () => {
                       </div>
                     </div>
                   </Card>
-
                   <Card className="p-6 border-border bg-card">
                     <h3 className="font-display font-semibold text-xl mb-4 flex items-center gap-2">
                       <Settings className="h-5 w-5 text-primary" />
@@ -330,10 +310,8 @@ const Profile = () => {
           </div>
         </div>
       </div>
-
       <Footer />
     </div>
   );
 };
-
 export default Profile;

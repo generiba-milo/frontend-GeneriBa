@@ -89,8 +89,28 @@ const Splash3dButton = ({
     if (disabled) return;
     playAudio();
     handlePress();
-    animation(e);
+    animation(e, 5, 10); // 5-10 droplets on click
     if (onClick) onClick(e);
+  }
+
+  // Hover handler - subtle effect without sound
+  function handleHover(e: React.MouseEvent<HTMLElement>) {
+    if (disabled) return;
+    animation(e, 3, 5); // 3-5 droplets on hover
+  }
+
+  // Touch handler - same as hover but for mobile
+  function handleTouch(e: React.TouchEvent<HTMLElement>) {
+    if (disabled) return;
+    // Convert touch event to mouse-like event for animation
+    const touch = e.touches[0];
+    if (touch) {
+      const syntheticEvent = {
+        clientX: touch.clientX,
+        clientY: touch.clientY,
+      };
+      animation(syntheticEvent as any, 3, 5); // 3-5 droplets on touch
+    }
   }
 
   function createEle(x: string, y: string) {
@@ -111,12 +131,12 @@ const Splash3dButton = ({
     return ele;
   }
 
-  async function animation(e: unknown) {
+  async function animation(e: unknown, minDroplets = 5, maxDroplets = 10) {
     if (!scope.current) return;
     const t: AnimationOptions = { duration: 0.4, ease: "easeOut" };
     const wrapper = scope.current.querySelector("#splash-wrapper");
 
-    const numElements = Math.floor(Math.random() * 5) + 5; // 5 to 10
+    const numElements = Math.floor(Math.random() * (maxDroplets - minDroplets + 1)) + minDroplets;
     const elements: HTMLElement[] = [];
 
     const bounding = (scope.current as HTMLElement).getBoundingClientRect();
@@ -161,12 +181,14 @@ const Splash3dButton = ({
   ref={scope}
   role="button"
   tabIndex={disabled ? -1 : 0}
-  aria-disabled={disabled ? true : undefined}
+  {...(disabled ? { "aria-disabled": true } : {})}
       className={cn(
         "group relative cursor-pointer",
         disabled && "pointer-events-none opacity-60",
       )}
       onClick={(e) => handleClick(e)}
+      onMouseEnter={(e) => handleHover(e)}
+      onTouchStart={(e) => handleTouch(e)}
       onKeyDown={(e) => {
         if (disabled) return;
         if (e.key === "Enter" || e.key === " ") {
@@ -174,7 +196,7 @@ const Splash3dButton = ({
           // synthesize a mouse-like event for the animation
           handlePress();
           playAudio();
-          animation(e);
+          animation(e, 5, 10); // 5-10 droplets on keyboard
           if (onClick) onClick(e as unknown as React.KeyboardEvent<HTMLElement>);
         }
       }}

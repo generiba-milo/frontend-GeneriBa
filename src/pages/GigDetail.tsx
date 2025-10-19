@@ -11,17 +11,14 @@ import {
   CheckCircle2, AlertCircle, TrendingUp 
 } from "lucide-react";
 import { useParams } from "react-router-dom";
-
 const GigDetail = () => {
   const { id } = useParams();
-
   return (
     <div className="min-h-screen bg-background">
   <FloatingNavbar navItems={navItems} />
-      
       <div className="pt-24 pb-20 px-4">
         <div className="container mx-auto max-w-6xl">
-          {/* Header */}
+          {}
           <div className="mb-8 space-y-4 animate-fade-in">
             <div className="flex flex-wrap gap-3">
               <Badge className="bg-primary/20 text-primary border-primary/30">
@@ -32,11 +29,9 @@ const GigDetail = () => {
               <Badge variant="outline">Web3</Badge>
               <Badge variant="outline">TypeScript</Badge>
             </div>
-            
             <h1 className="font-display text-4xl font-bold">
               Build NFT Marketplace Landing Page
             </h1>
-
             <div className="flex flex-wrap items-center gap-6 text-muted-foreground">
               <div className="flex items-center gap-2">
                 <Clock className="h-4 w-4" />
@@ -52,18 +47,16 @@ const GigDetail = () => {
               </div>
             </div>
           </div>
-
           <div className="grid lg:grid-cols-3 gap-8">
-            {/* Main Content */}
+            {}
             <div className="lg:col-span-2 space-y-6">
-              {/* Tabs */}
+              {}
               <Tabs defaultValue="description" className="animate-fade-in-up">
                 <TabsList className="bg-card border border-border">
                   <TabsTrigger value="description">Description</TabsTrigger>
                   <TabsTrigger value="timeline">Timeline</TabsTrigger>
                   <TabsTrigger value="reviews">Reviews</TabsTrigger>
                 </TabsList>
-
                 <TabsContent value="description" className="space-y-6">
                   <Card className="p-6 border-border bg-card">
                     <h2 className="font-display font-semibold text-xl mb-4">Project Details</h2>
@@ -72,7 +65,6 @@ const GigDetail = () => {
                         Looking for an experienced React developer to build a modern, responsive landing page 
                         for an NFT marketplace. The design should be clean, professional, and optimized for Web3 users.
                       </p>
-                      
                       <h3 className="font-semibold text-lg mt-6">Requirements</h3>
                       <ul className="space-y-2 text-muted-foreground">
                         <li className="flex items-start gap-2">
@@ -92,7 +84,6 @@ const GigDetail = () => {
                           <span>Clean, maintainable code with documentation</span>
                         </li>
                       </ul>
-
                       <h3 className="font-semibold text-lg mt-6">Deliverables</h3>
                       <ul className="space-y-2 text-muted-foreground">
                         <li className="flex items-start gap-2">
@@ -115,11 +106,9 @@ const GigDetail = () => {
                     </div>
                   </Card>
                 </TabsContent>
-
                 <TabsContent value="timeline" className="space-y-4">
                   <Card className="p-6 border-border bg-card">
                     <h2 className="font-display font-semibold text-xl mb-6">Project Timeline</h2>
-                    
                     <div className="space-y-6">
                       {[
                         { status: "complete", title: "Gig Posted", desc: "Project listed on marketplace", time: "2 days ago" },
@@ -155,7 +144,6 @@ const GigDetail = () => {
                     </div>
                   </Card>
                 </TabsContent>
-
                 <TabsContent value="reviews">
                   <Card className="p-6 border-border bg-card">
                     <h2 className="font-display font-semibold text-xl mb-4">Client Reviews</h2>
@@ -187,10 +175,9 @@ const GigDetail = () => {
                 </TabsContent>
               </Tabs>
             </div>
-
-            {/* Sidebar */}
+            {}
             <div className="space-y-6">
-              {/* Payout Card */}
+              {}
               <Card className="p-6 border-primary/30 bg-gradient-to-br from-primary/10 to-transparent animate-fade-in">
                 <div className="space-y-4">
                   <div>
@@ -201,7 +188,6 @@ const GigDetail = () => {
                       <span className="text-muted-foreground">USDC</span>
                     </div>
                   </div>
-
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
                       <span className="text-muted-foreground">Escrow Status</span>
@@ -218,19 +204,16 @@ const GigDetail = () => {
                       <span className="text-primary">$490</span>
                     </div>
                   </div>
-
                   <Button className="w-full bg-primary hover:bg-primary/90 shadow-lg shadow-primary/20" size="lg">
                     Apply for Gig
                   </Button>
-
                   <Button variant="outline" className="w-full border-primary/30 hover:bg-primary/10">
                     <MessageCircle className="mr-2 h-4 w-4" />
                     Ask Question
                   </Button>
                 </div>
               </Card>
-
-              {/* Client Card */}
+              {}
               <Card className="p-6 border-border bg-card animate-fade-in-up" style={{ animationDelay: "100ms" }}>
                 <h3 className="font-semibold mb-4">Posted By</h3>
                 <div className="space-y-4">
@@ -248,7 +231,6 @@ const GigDetail = () => {
                       </div>
                     </div>
                   </div>
-
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Trust Level</span>
@@ -271,10 +253,8 @@ const GigDetail = () => {
           </div>
         </div>
       </div>
-
       <Footer />
     </div>
   );
 };
-
 export default GigDetail;

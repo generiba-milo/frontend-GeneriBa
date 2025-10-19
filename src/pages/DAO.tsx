@@ -10,15 +10,13 @@ import {
   Vote, TrendingUp, Users, Shield, Award, 
   CheckCircle2, XCircle, Clock, DollarSign 
 } from "lucide-react";
-
 const DAO = () => {
   return (
     <div className="min-h-screen bg-background">
   <FloatingNavbar navItems={navItems} />
-      
       <div className="pt-24 pb-20 px-4">
         <div className="container mx-auto max-w-7xl">
-          {/* Header */}
+          {}
           <div className="mb-8 space-y-4 animate-fade-in">
             <div className="flex items-center gap-2">
               <Vote className="h-8 w-8 text-primary" />
@@ -28,8 +26,7 @@ const DAO = () => {
               Community-driven decisions. Transparent voting. Shared ownership.
             </p>
           </div>
-
-          {/* Stats Grid */}
+          {}
           <div className="grid md:grid-cols-4 gap-6 mb-8">
             {[
               { icon: DollarSign, label: "Treasury", value: "$2.4M", color: "text-green-400" },
@@ -48,10 +45,9 @@ const DAO = () => {
               </Card>
             ))}
           </div>
-
-          {/* Main Content */}
+          {}
           <div className="grid lg:grid-cols-3 gap-8">
-            {/* Proposals */}
+            {}
             <div className="lg:col-span-2 space-y-6">
               <div className="flex items-center justify-between">
                 <h2 className="font-display text-2xl font-bold">Active Proposals</h2>
@@ -60,7 +56,6 @@ const DAO = () => {
                   Create Proposal
                 </Button>
               </div>
-
               <div className="space-y-4">
                 {[
                   {
@@ -129,8 +124,7 @@ const DAO = () => {
                         </div>
                       </div>
                     </div>
-
-                    {/* Voting Stats */}
+                    {}
                     <div className="space-y-3 mb-4">
                       <div className="flex justify-between text-sm">
                         <span className="text-muted-foreground">Support</span>
@@ -153,8 +147,7 @@ const DAO = () => {
                         </span>
                       </div>
                     </div>
-
-                    {/* Vote Buttons */}
+                    {}
                     <div className="flex gap-3">
                       <Button className="flex-1 bg-green-600 hover:bg-green-700">
                         <CheckCircle2 className="mr-2 h-4 w-4" />
@@ -169,10 +162,9 @@ const DAO = () => {
                 ))}
               </div>
             </div>
-
-            {/* Sidebar */}
+            {}
             <div className="space-y-6">
-              {/* Your Stake */}
+              {}
               <Card className="p-6 border-primary/30 bg-gradient-to-br from-primary/10 to-transparent">
                 <h3 className="font-display font-semibold text-lg mb-4">Your DAO Stake</h3>
                 <div className="space-y-4">
@@ -204,8 +196,7 @@ const DAO = () => {
                   </Button>
                 </div>
               </Card>
-
-              {/* Leaderboard */}
+              {}
               <Card className="p-6 border-border bg-card">
                 <h3 className="font-display font-semibold text-lg mb-4">Top Contributors</h3>
                 <div className="space-y-3">
@@ -230,8 +221,7 @@ const DAO = () => {
                   ))}
                 </div>
               </Card>
-
-              {/* Trust Delegation */}
+              {}
               <Card className="p-6 border-border bg-card">
                 <h3 className="font-display font-semibold text-lg mb-4">
                   <Shield className="inline h-5 w-5 mr-2 text-primary" />
@@ -248,10 +238,8 @@ const DAO = () => {
           </div>
         </div>
       </div>
-
       <Footer />
     </div>
   );
 };
-
 export default DAO;

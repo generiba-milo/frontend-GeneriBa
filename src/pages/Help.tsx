@@ -9,7 +9,6 @@ import {
   HelpCircle, Search, BookOpen, MessageCircle, 
   Shield, Wallet, Users, FileText 
 } from "lucide-react";
-
 const CATEGORIES = [
   { icon: Wallet, title: "Getting Started", desc: "Connect wallet, set up profile", count: 8 },
   { icon: FileText, title: "Posting Gigs", desc: "How to create and manage gigs", count: 12 },
@@ -18,7 +17,6 @@ const CATEGORIES = [
   { icon: MessageCircle, title: "Disputes", desc: "Resolution process", count: 6 },
   { icon: BookOpen, title: "Platform Policies", desc: "Terms, fees, guidelines", count: 7 }
 ];
-
 const FAQS = [
   {
     question: "How do I connect my wallet?",
@@ -53,15 +51,13 @@ const FAQS = [
     answer: "Earnings are automatically sent to your connected wallet once a gig is marked complete and the escrow releases. There's no withdrawal process - you control your funds immediately."
   }
 ];
-
 const Help = () => {
   return (
     <div className="min-h-screen bg-background">
   <FloatingNavbar navItems={navItems} />
-      
       <div className="pt-24 pb-20 px-4">
         <div className="container mx-auto max-w-6xl">
-          {/* Header */}
+          {}
           <div className="mb-12 text-center space-y-4 animate-fade-in">
             <div className="flex items-center justify-center gap-2">
               <HelpCircle className="h-8 w-8 text-primary" />
@@ -70,8 +66,7 @@ const Help = () => {
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Find answers, learn about features, and get support
             </p>
-
-            {/* Search */}
+            {}
             <div className="max-w-2xl mx-auto mt-8">
               <div className="relative">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
@@ -82,8 +77,7 @@ const Help = () => {
               </div>
             </div>
           </div>
-
-          {/* Categories */}
+          {}
           <div className="mb-12">
             <h2 className="font-display text-2xl font-bold mb-6">Browse by Topic</h2>
             <div className="grid md:grid-cols-3 gap-6">
@@ -103,8 +97,7 @@ const Help = () => {
               ))}
             </div>
           </div>
-
-          {/* FAQs */}
+          {}
           <div className="mb-12">
             <h2 className="font-display text-2xl font-bold mb-6">Frequently Asked Questions</h2>
             <Card className="p-6 border-border bg-card">
@@ -122,8 +115,7 @@ const Help = () => {
               </Accordion>
             </Card>
           </div>
-
-          {/* Quick Links */}
+          {}
           <div className="grid md:grid-cols-2 gap-6 mb-12">
             <Card className="p-6 border-primary/30 bg-gradient-to-br from-primary/10 to-transparent">
               <BookOpen className="h-8 w-8 text-primary mb-3" />
@@ -135,7 +127,6 @@ const Help = () => {
                 Read Docs
               </Button>
             </Card>
-
             <Card className="p-6 border-border bg-card">
               <MessageCircle className="h-8 w-8 text-primary mb-3" />
               <h3 className="font-display font-semibold text-xl mb-2">Community Support</h3>
@@ -147,8 +138,7 @@ const Help = () => {
               </Button>
             </Card>
           </div>
-
-          {/* Contact Card */}
+          {}
           <Card className="p-8 border-border bg-card text-center">
             <h2 className="font-display text-2xl font-bold mb-4">Still need help?</h2>
             <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
@@ -166,10 +156,8 @@ const Help = () => {
           </Card>
         </div>
       </div>
-
       <Footer />
     </div>
   );
 };
-
 export default Help;

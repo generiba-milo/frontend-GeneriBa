@@ -12,17 +12,14 @@ import {
   CheckCircle2, ArrowRight
 } from "lucide-react";
 import { useState } from "react";
-
 const PostGig = () => {
   const [step, setStep] = useState(1);
-
   return (
     <div className="min-h-screen bg-background">
   <FloatingNavbar navItems={navItems} />
-      
       <div className="pt-24 pb-20 px-4">
         <div className="container mx-auto max-w-5xl">
-          {/* Header */}
+          {}
           <div className="mb-8 space-y-4 animate-fade-in">
             <div className="flex items-center gap-2">
               <Plus className="h-8 w-8 text-primary" />
@@ -32,8 +29,7 @@ const PostGig = () => {
               Find the perfect freelancer for your project
             </p>
           </div>
-
-          {/* Progress Steps */}
+          {}
           <div className="mb-8">
             <div className="flex items-center justify-between max-w-3xl mx-auto">
               {[
@@ -62,15 +58,13 @@ const PostGig = () => {
               ))}
             </div>
           </div>
-
           <div className="grid lg:grid-cols-3 gap-8">
-            {/* Form */}
+            {}
             <div className="lg:col-span-2">
               <Card className="p-8 border-border bg-card">
                 {step === 1 && (
                   <div className="space-y-6 animate-fade-in">
                     <h2 className="font-display text-2xl font-bold">Gig Details</h2>
-                    
                     <div>
                       <Label htmlFor="title">Gig Title*</Label>
                       <Input 
@@ -82,7 +76,6 @@ const PostGig = () => {
                         Be specific and descriptive
                       </p>
                     </div>
-
                     <div>
                       <Label htmlFor="description">Description*</Label>
                       <Textarea 
@@ -91,7 +84,6 @@ const PostGig = () => {
                         className="bg-background border-border mt-1 min-h-[150px]"
                       />
                     </div>
-
                     <div>
                       <Label>Category*</Label>
                       <div className="grid grid-cols-2 gap-3 mt-2">
@@ -109,7 +101,6 @@ const PostGig = () => {
                         ))}
                       </div>
                     </div>
-
                     <div>
                       <Label>Skills Required</Label>
                       <div className="flex flex-wrap gap-2 mt-2">
@@ -133,11 +124,9 @@ const PostGig = () => {
                     </div>
                   </div>
                 )}
-
                 {step === 2 && (
                   <div className="space-y-6 animate-fade-in">
                     <h2 className="font-display text-2xl font-bold">Payment Details</h2>
-                    
                     <div>
                       <Label htmlFor="budget">Budget*</Label>
                       <div className="flex gap-3 mt-1">
@@ -157,7 +146,6 @@ const PostGig = () => {
                         </div>
                       </div>
                     </div>
-
                     <div className="p-4 rounded-lg bg-muted/50 border border-border">
                       <div className="flex justify-between text-sm mb-2">
                         <span className="text-muted-foreground">Your Budget</span>
@@ -172,7 +160,6 @@ const PostGig = () => {
                         <span className="font-semibold text-green-400">$490</span>
                       </div>
                     </div>
-
                     <div>
                       <Label>Escrow Type*</Label>
                       <div className="space-y-3 mt-2">
@@ -198,11 +185,9 @@ const PostGig = () => {
                     </div>
                   </div>
                 )}
-
                 {step === 3 && (
                   <div className="space-y-6 animate-fade-in">
                     <h2 className="font-display text-2xl font-bold">Requirements & Settings</h2>
-                    
                     <div>
                       <Label htmlFor="deadline">Deadline*</Label>
                       <Input 
@@ -211,7 +196,6 @@ const PostGig = () => {
                         className="bg-background border-border mt-1"
                       />
                     </div>
-
                     <div>
                       <Label>Minimum Trust Level</Label>
                       <div className="flex gap-3 mt-2">
@@ -227,7 +211,6 @@ const PostGig = () => {
                         ))}
                       </div>
                     </div>
-
                     <div>
                       <Label>Gig Type</Label>
                       <div className="space-y-3 mt-2">
@@ -253,7 +236,6 @@ const PostGig = () => {
                         </label>
                       </div>
                     </div>
-
                     <div>
                       <Label htmlFor="attachments">Attachments (Optional)</Label>
                       <div className="mt-2 p-8 rounded-lg border-2 border-dashed border-border hover:border-primary/30 cursor-pointer transition-colors text-center">
@@ -265,22 +247,18 @@ const PostGig = () => {
                     </div>
                   </div>
                 )}
-
                 {step === 4 && (
                   <div className="space-y-6 animate-fade-in">
                     <h2 className="font-display text-2xl font-bold">Review Your Gig</h2>
-                    
                     <div className="space-y-4">
                       <div className="p-4 rounded-lg bg-muted/50 border border-border">
                         <div className="text-sm text-muted-foreground mb-1">Title</div>
                         <div className="font-semibold">Build NFT Marketplace Landing Page</div>
                       </div>
-                      
                       <div className="p-4 rounded-lg bg-muted/50 border border-border">
                         <div className="text-sm text-muted-foreground mb-1">Payment</div>
                         <div className="text-2xl font-bold text-primary">500 USDC</div>
                       </div>
-
                       <div className="grid grid-cols-2 gap-4">
                         <div className="p-4 rounded-lg bg-muted/50 border border-border">
                           <Clock className="h-5 w-5 text-primary mb-2" />
@@ -293,7 +271,6 @@ const PostGig = () => {
                           <div className="font-semibold">Level 2+</div>
                         </div>
                       </div>
-
                       <div className="p-4 rounded-lg bg-primary/10 border border-primary/30">
                         <CheckCircle2 className="h-5 w-5 text-primary mb-2" />
                         <div className="font-semibold mb-1">Ready to Post!</div>
@@ -304,8 +281,7 @@ const PostGig = () => {
                     </div>
                   </div>
                 )}
-
-                {/* Navigation */}
+                {}
                 <div className="flex gap-3 mt-8 pt-6 border-t border-border">
                   {step > 1 && (
                     <Button 
@@ -335,8 +311,7 @@ const PostGig = () => {
                 </div>
               </Card>
             </div>
-
-            {/* Sidebar */}
+            {}
             <div className="space-y-6">
               <Card className="p-6 border-primary/30 bg-gradient-to-br from-primary/10 to-transparent">
                 <h3 className="font-semibold mb-4">Posting Tips</h3>
@@ -355,7 +330,6 @@ const PostGig = () => {
                   ))}
                 </div>
               </Card>
-
               <Card className="p-6 border-border bg-card">
                 <h3 className="font-semibold mb-4">
                   <DollarSign className="inline h-5 w-5 text-primary mr-2" />
@@ -380,10 +354,8 @@ const PostGig = () => {
           </div>
         </div>
       </div>
-
       <Footer />
     </div>
   );
 };
-
 export default PostGig;

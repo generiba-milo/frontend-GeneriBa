@@ -7,15 +7,13 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Textarea } from "@/components/ui/textarea";
 import { AlertCircle, Shield, MessageCircle, Upload, CheckCircle2, Clock } from "lucide-react";
-
 const Disputes = () => {
   return (
     <div className="min-h-screen bg-background">
   <FloatingNavbar navItems={navItems} />
-      
       <div className="pt-24 pb-20 px-4">
         <div className="container mx-auto max-w-6xl">
-          {/* Header */}
+          {}
           <div className="mb-8 space-y-4 animate-fade-in">
             <div className="flex items-center gap-2">
               <AlertCircle className="h-8 w-8 text-yellow-400" />
@@ -25,8 +23,7 @@ const Disputes = () => {
               Fair resolution through community arbitration
             </p>
           </div>
-
-          {/* Active Disputes */}
+          {}
           <div className="space-y-6">
             <div className="flex items-center justify-between">
               <h2 className="font-display text-2xl font-bold">Your Disputes</h2>
@@ -34,8 +31,7 @@ const Disputes = () => {
                 1 Active
               </Badge>
             </div>
-
-            {/* Dispute Card */}
+            {}
             <Card className="p-6 border-yellow-400/30 bg-card animate-fade-in-up">
               <div className="flex items-start justify-between mb-4">
                 <div className="flex-1">
@@ -53,8 +49,7 @@ const Disputes = () => {
                   </p>
                 </div>
               </div>
-
-              {/* Timeline */}
+              {}
               <div className="mb-6">
                 <h4 className="font-semibold mb-4">Case Timeline</h4>
                 <div className="space-y-4">
@@ -90,8 +85,7 @@ const Disputes = () => {
                   ))}
                 </div>
               </div>
-
-              {/* Evidence Section */}
+              {}
               <div className="mb-6 p-4 rounded-lg bg-muted/50 border border-border">
                 <h4 className="font-semibold mb-3 flex items-center gap-2">
                   <Upload className="h-4 w-4 text-primary" />
@@ -112,8 +106,7 @@ const Disputes = () => {
                   Add More Evidence
                 </Button>
               </div>
-
-              {/* Chat/Messages */}
+              {}
               <div className="mb-6">
                 <h4 className="font-semibold mb-3 flex items-center gap-2">
                   <MessageCircle className="h-4 w-4 text-primary" />
@@ -148,8 +141,7 @@ const Disputes = () => {
                   Send Message
                 </Button>
               </div>
-
-              {/* Arbitrators */}
+              {}
               <div className="p-4 rounded-lg bg-primary/10 border border-primary/30">
                 <h4 className="font-semibold mb-3 flex items-center gap-2">
                   <Shield className="h-4 w-4 text-primary" />
@@ -169,8 +161,7 @@ const Disputes = () => {
                 </div>
               </div>
             </Card>
-
-            {/* Past Disputes */}
+            {}
             <div className="mt-12">
               <h2 className="font-display text-2xl font-bold mb-6">Past Cases</h2>
               <div className="space-y-4">
@@ -217,10 +208,8 @@ const Disputes = () => {
           </div>
         </div>
       </div>
-
       <Footer />
     </div>
   );
 };
-
 export default Disputes;

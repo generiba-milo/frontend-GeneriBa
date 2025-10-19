@@ -5,10 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Wallet, Shield, Users, Zap, TrendingUp, Award, ArrowRight, CheckCircle2 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import HeroHighlight, { Highlight } from "@/components/aceternity/HeroHighlight";
-
-// Simple background lines component
+import Splash3dButton from "@/components/3d-splash-button";
 const BackgroundLines: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <div className="relative">
     <div
@@ -21,52 +20,56 @@ const BackgroundLines: React.FC<{ children: React.ReactNode }> = ({ children }) 
     <div className="relative z-10">{children}</div>
   </div>
 );
-
 const Landing = () => {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-background">
-  <FloatingNavbar navItems={navItems} />
-      
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-4 overflow-hidden">
+      <FloatingNavbar navItems={navItems} />
+      {}
+      <section className="relative pt-40 pb-20 px-4 overflow-hidden">
+        {}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-purple-500/10 to-pink-500/10 animate-gradient-slow" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(139,92,246,0.1),transparent_50%)] animate-pulse-slow" />
         <BackgroundLines>
           <HeroHighlight>
             <div className="container mx-auto relative z-10">
               <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in-up">
-                {/* Badge */}
+                {}
                 <Badge className="bg-primary/20 text-primary border-primary/30 px-4 py-1">
                   <Shield className="h-3 w-3 mr-2" />
                   DAO-Powered • KYC-Free • Trustless
                 </Badge>
-
-                {/* Headline */}
+                {}
                 <h1 className="font-display text-5xl md:text-7xl font-bold leading-tight">
-                  <Highlight>The DAO for Freelancers</Highlight>
+                  <span className="block mb-2">
+                    <Highlight>The DAO for Freelancers</Highlight>
+                  </span>
                   <span className="block bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
                     Earn on-chain. Build reputation. Work without borders.
                   </span>
                 </h1>
-
-                {/* Subheadline */}
+                {}
                 <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
                   A trustless, DAO-governed marketplace where freelancers and teams build, collaborate, and get paid in crypto.
                 </p>
-
-                {/* CTA */}
+                {}
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                  <Button size="lg" className="bg-primary hover:bg-primary/90 shadow-xl shadow-primary/30 group">
-                    <Wallet className="mr-2 h-5 w-5" />
+                  <Splash3dButton
+                    className="bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-white px-8 py-4 rounded-lg font-semibold text-lg shadow-xl shadow-primary/30 flex items-center gap-2 group transition-all"
+                    onClick={() => navigate('/need-job')}
+                  >
+                    <Wallet className="h-5 w-5" />
                     Connect Wallet & Start
-                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                  <Link to="/marketplace">
-                    <Button size="lg" variant="outline" className="border-primary/30 hover:bg-primary/10">
-                      Browse Gigs
-                    </Button>
-                  </Link>
+                    <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </Splash3dButton>
+                  <Splash3dButton
+                    className="bg-transparent border-2 border-primary/30 hover:bg-primary/10 text-primary px-8 py-4 rounded-lg font-semibold text-lg transition-all"
+                    onClick={() => navigate('/marketplace')}
+                  >
+                    Browse Gigs
+                  </Splash3dButton>
                 </div>
-
-                {/* Stats Bar */}
+                {}
                 <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto pt-8">
                   <div className="text-center">
                     <div className="text-3xl font-bold text-primary">$125K+</div>
@@ -86,8 +89,7 @@ const Landing = () => {
           </HeroHighlight>
         </BackgroundLines>
       </section>
-
-      {/* Features Grid */}
+      {}
       <section className="py-20 px-4">
         <div className="container mx-auto">
           <div className="text-center mb-12 space-y-4 animate-fade-in">
@@ -96,7 +98,6 @@ const Landing = () => {
               Built for the decentralized economy. Powered by community trust.
             </p>
           </div>
-
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
@@ -137,8 +138,7 @@ const Landing = () => {
           </div>
         </div>
       </section>
-
-      {/* Steps Section */}
+      {}
       <section className="py-20 px-4 bg-gradient-to-b from-transparent via-primary/5 to-transparent">
         <div className="container mx-auto max-w-4xl">
           <div className="text-center mb-12 space-y-4">
@@ -147,7 +147,6 @@ const Landing = () => {
               Five simple steps to your first gig
             </p>
           </div>
-
           <div className="space-y-6">
             {[
               { step: "1", title: "Connect Your Wallet", desc: "Any Web3 wallet works. No signup forms." },
@@ -172,17 +171,18 @@ const Landing = () => {
               </div>
             ))}
           </div>
-
           <div className="text-center mt-12">
-            <Button size="lg" className="bg-primary hover:bg-primary/90 shadow-xl shadow-primary/30">
-              <Wallet className="mr-2 h-5 w-5" />
+            <Splash3dButton
+              className="bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-white px-8 py-4 rounded-lg font-semibold text-lg shadow-xl shadow-primary/30 flex items-center gap-2 mx-auto transition-all"
+              onClick={() => navigate('/need-job')}
+            >
+              <Wallet className="h-5 w-5" />
               Get Started Now
-            </Button>
+            </Splash3dButton>
           </div>
         </div>
       </section>
-
-      {/* Competitive Edge */}
+      {}
       <section className="py-20 px-4">
         <div className="container mx-auto">
           <Card className="p-8 md:p-12 border-primary/30 bg-gradient-to-br from-primary/10 to-transparent">
@@ -232,10 +232,8 @@ const Landing = () => {
           </Card>
         </div>
       </section>
-
       <Footer />
     </div>
   );
 };
-
 export default Landing;

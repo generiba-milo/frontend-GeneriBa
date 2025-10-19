@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Search, SlidersHorizontal, TrendingUp } from "lucide-react";
 import { useState } from "react";
-
 const MOCK_GIGS = [
   {
     id: "1",
@@ -82,13 +81,10 @@ const MOCK_GIGS = [
     deadline: "2 weeks"
   }
 ];
-
 const SKILL_FILTERS = ["React", "Solidity", "Design", "Web3", "Python", "Writing", "DeFi", "DAO"];
-
 const Marketplace = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
-
   const toggleSkill = (skill: string) => {
     setSelectedSkills(prev => 
       prev.includes(skill) 
@@ -96,14 +92,12 @@ const Marketplace = () => {
         : [...prev, skill]
     );
   };
-
   return (
     <div className="min-h-screen bg-background">
   <FloatingNavbar navItems={navItems} />
-      
       <div className="pt-24 pb-20 px-4">
         <div className="container mx-auto">
-          {/* Header */}
+          {}
           <div className="mb-8 space-y-4 animate-fade-in">
             <div className="flex items-center gap-2">
               <TrendingUp className="h-8 w-8 text-primary" />
@@ -113,10 +107,9 @@ const Marketplace = () => {
               Discover opportunities. Build your reputation. Earn in crypto.
             </p>
           </div>
-
-          {/* Filters */}
+          {}
           <div className="mb-8 space-y-4 animate-fade-in-up">
-            {/* Search Bar */}
+            {}
             <div className="flex gap-4">
               <div className="flex-1 relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
@@ -132,8 +125,7 @@ const Marketplace = () => {
                 Filters
               </Button>
             </div>
-
-            {/* Skill Tags */}
+            {}
             <div className="flex flex-wrap gap-2">
               {SKILL_FILTERS.map((skill) => (
                 <Badge
@@ -151,8 +143,7 @@ const Marketplace = () => {
               ))}
             </div>
           </div>
-
-          {/* Stats Banner */}
+          {}
           <div className="mb-8 p-4 rounded-lg bg-gradient-to-r from-primary/10 via-primary/5 to-transparent border border-primary/20 animate-fade-in">
             <div className="flex flex-wrap gap-6 text-sm">
               <div>
@@ -169,8 +160,7 @@ const Marketplace = () => {
               </div>
             </div>
           </div>
-
-          {/* Gigs Grid */}
+          {}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {MOCK_GIGS.map((gig, i) => (
               <div 
@@ -182,8 +172,7 @@ const Marketplace = () => {
               </div>
             ))}
           </div>
-
-          {/* Load More */}
+          {}
           <div className="mt-12 text-center">
             <Button variant="outline" size="lg" className="border-primary/30 hover:bg-primary/10">
               Load More Gigs
@@ -191,10 +180,8 @@ const Marketplace = () => {
           </div>
         </div>
       </div>
-
       <Footer />
     </div>
   );
 };
-
 export default Marketplace;

@@ -1,15 +1,17 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { FloatingNavbar } from "@/components/aceternity/FloatingNavbar";
-import { TextGenerateEffect } from "@/components/aceternity/TextGenerateEffect";
 import { BentoGrid, BentoGridItem } from "@/components/aceternity/BentoGrid";
 import { CardSpotlight } from "@/components/aceternity/CardSpotlight";
 import { ThreeDCard } from "@/components/aceternity/ThreeDCard";
 import { Sparkles } from "@/components/aceternity/Sparkles";
 import { MagneticButton, GlowButton } from "@/components/aceternity/AnimatedButton";
-import { HeroParallax } from "@/components/aceternity/HeroParallax";
 import { MovingBorder } from "@/components/aceternity/MovingBorder";
 import { BackgroundGradient } from "@/components/aceternity/BackgroundGradient";
+import { HeroParallax } from "@/components/aceternity/HeroParallax";
+import { TextGenerateEffect } from "@/components/aceternity/TextGenerateEffect";
+import { BackgroundBeamsWithCollision } from "@/components/aceternity/background-beam-with-collision";
+import Splash3dButton from "@/components/3d-splash-button";
 import Footer from "@/components/Footer";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -18,24 +20,21 @@ import {
   ArrowRight, CheckCircle2, Sparkles as SparklesIcon,
   Lock, Globe, Coins, Target, Code, Rocket
 } from "lucide-react";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 const LandingNew = () => {
   const [mounted, setMounted] = useState(false);
+  const navigate = useNavigate();
   const featuresRef = useRef(null);
   const isInView = useInView(featuresRef, { once: true });
-
   useEffect(() => {
     setMounted(true);
   }, []);
-
   const navItems = [
     { name: "Marketplace", link: "/marketplace" },
     { name: "DAO", link: "/dao" },
     { name: "Teams", link: "/teams" },
     { name: "Dashboard", link: "/dashboard" },
   ];
-
   const bentoFeatures = [
     {
       title: "Decentralized Trust",
@@ -116,7 +115,6 @@ const LandingNew = () => {
       className: "md:col-span-2",
     },
   ];
-
   const steps = [
     {
       num: "01",
@@ -149,22 +147,18 @@ const LandingNew = () => {
       icon: Rocket,
     },
   ];
-
   const stats = [
     { value: "$125K+", label: "Total Paid Out", gradient: "from-blue-500 to-cyan-500" },
     { value: "1,200+", label: "Active Users", gradient: "from-purple-500 to-pink-500" },
     { value: "347", label: "Live Gigs", gradient: "from-green-500 to-emerald-500" },
     { value: "0", label: "IDs Required", gradient: "from-orange-500 to-red-500" },
   ];
-
   return (
     <div className="min-h-screen bg-background overflow-hidden">
       <FloatingNavbar navItems={navItems} />
-
       <HeroParallax>
-        <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden pt-20">
+        <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden pt-32 md:pt-40">
           <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
-
           <motion.div
             className="absolute top-40 left-20 w-72 h-72 bg-primary/30 rounded-full blur-[100px]"
             animate={{
@@ -189,43 +183,38 @@ const LandingNew = () => {
               ease: "easeInOut",
             }}
           />
-
           <Sparkles className="absolute inset-0 z-0" particleCount={30} />
-
           <div className="container mx-auto relative z-10">
-            <div className="max-w-5xl mx-auto text-center space-y-10">
+            <div className="max-w-5xl mx-auto text-center space-y-6 md:space-y-8">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
               >
                 <BackgroundGradient className="rounded-full inline-block px-6 py-2">
-                  <Badge className="bg-transparent text-foreground border-0 text-sm font-medium">
-                    <SparklesIcon className="h-4 w-4 mr-2 text-primary" />
+                  <Badge className="bg-transparent text-foreground border-0 text-xs sm:text-sm font-medium">
+                    <SparklesIcon className="h-3 w-3 sm:h-4 sm:w-4 mr-2 text-primary" />
                     DAO-Powered • KYC-Free • Trustless
                   </Badge>
                 </BackgroundGradient>
               </motion.div>
-
-              <div className="space-y-6">
+              <div className="space-y-4 md:space-y-6">
                 <TextGenerateEffect
                   words="Fair Work. Open Future."
-                  className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight"
                 />
-
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.5 }}
                   className="max-w-3xl mx-auto"
                 >
-                  <p className="text-xl md:text-2xl lg:text-3xl text-muted-foreground font-light">
+                  <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground font-light">
                     Decentralized gig marketplace. Earn in crypto.
                     <span className="text-primary font-semibold"> Build trust through DAO.</span> No ID required.
                   </p>
                 </motion.div>
               </div>
-
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -237,14 +226,12 @@ const LandingNew = () => {
                   Connect Wallet & Start
                   <ArrowRight className="ml-2 h-6 w-6 group-hover:translate-x-1 transition-transform" />
                 </MagneticButton>
-
                 <Link to="/marketplace">
                   <GlowButton size="lg" className="text-lg px-8 py-6">
                     Browse Live Gigs
                   </GlowButton>
                 </Link>
               </motion.div>
-
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -268,7 +255,6 @@ const LandingNew = () => {
           </div>
         </section>
       </HeroParallax>
-
       <section ref={featuresRef} className="py-32 px-4 relative">
         <div className="container mx-auto">
           <motion.div
@@ -284,7 +270,6 @@ const LandingNew = () => {
               Built for the decentralized economy. Powered by community trust.
             </p>
           </motion.div>
-
           <BentoGrid className="max-w-6xl mx-auto">
             {bentoFeatures.map((item, i) => (
               <BentoGridItem
@@ -299,7 +284,6 @@ const LandingNew = () => {
           </BentoGrid>
         </div>
       </section>
-
       <section className="py-32 px-4 bg-gradient-to-b from-transparent via-primary/5 to-transparent relative">
         <div className="container mx-auto max-w-5xl">
           <div className="text-center mb-20 space-y-4">
@@ -310,7 +294,6 @@ const LandingNew = () => {
               Five simple steps to your first gig
             </p>
           </div>
-
           <div className="space-y-8">
             {steps.map((step, i) => (
               <motion.div
@@ -340,7 +323,6 @@ const LandingNew = () => {
               </motion.div>
             ))}
           </div>
-
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -355,7 +337,6 @@ const LandingNew = () => {
           </motion.div>
         </div>
       </section>
-
       <section className="py-32 px-4">
         <div className="container mx-auto max-w-7xl">
           <BackgroundGradient containerClassName="rounded-3xl">
@@ -392,7 +373,6 @@ const LandingNew = () => {
                     ))}
                   </div>
                 </div>
-
                 <div className="space-y-6">
                   {[
                     { label: "DAO Treasury", value: "$2.4M", desc: "Community-controlled", icon: Coins },
@@ -426,10 +406,8 @@ const LandingNew = () => {
           </BackgroundGradient>
         </div>
       </section>
-
       <Footer />
     </div>
   );
 };
-
 export default LandingNew;

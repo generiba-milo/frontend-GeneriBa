@@ -9,7 +9,6 @@ import {
   Bell, DollarSign, Users, Vote, AlertCircle, 
   MessageCircle, CheckCircle2, Gift, TrendingUp 
 } from "lucide-react";
-
 const NOTIFICATIONS = [
   {
     id: 1,
@@ -92,17 +91,14 @@ const NOTIFICATIONS = [
     read: true
   }
 ];
-
 const Notifications = () => {
   const unreadCount = NOTIFICATIONS.filter(n => !n.read).length;
-
   return (
     <div className="min-h-screen bg-background">
   <FloatingNavbar navItems={navItems} />
-      
       <div className="pt-24 pb-20 px-4">
         <div className="container mx-auto max-w-4xl">
-          {/* Header */}
+          {}
           <div className="mb-8 space-y-4 animate-fade-in">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
@@ -119,8 +115,7 @@ const Notifications = () => {
               </Button>
             </div>
           </div>
-
-          {/* Notifications List */}
+          {}
           <div className="space-y-3">
             {NOTIFICATIONS.map((notif, i) => (
               <Card 
@@ -131,14 +126,13 @@ const Notifications = () => {
                 style={{ animationDelay: `${i * 50}ms` }}
               >
                 <div className="flex gap-4">
-                  {/* Icon */}
+                  {}
                   <div className={`flex-shrink-0 w-10 h-10 rounded-full bg-muted/50 flex items-center justify-center ${
                     !notif.read ? "ring-2 ring-primary/30" : ""
                   }`}>
                     <notif.icon className={`h-5 w-5 ${notif.color}`} />
                   </div>
-
-                  {/* Content */}
+                  {}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between mb-1">
                       <h3 className="font-semibold">{notif.title}</h3>
@@ -189,15 +183,13 @@ const Notifications = () => {
               </Card>
             ))}
           </div>
-
-          {/* Load More */}
+          {}
           <div className="mt-8 text-center">
             <Button variant="outline" className="border-primary/30 hover:bg-primary/10">
               Load Older Notifications
             </Button>
           </div>
-
-          {/* Settings Card */}
+          {}
           <Card className="p-6 border-border bg-card mt-8">
             <h3 className="font-semibold mb-4">Notification Preferences</h3>
             <div className="space-y-3">
@@ -227,10 +219,8 @@ const Notifications = () => {
           </Card>
         </div>
       </div>
-
       <Footer />
     </div>
   );
 };
-
 export default Notifications;

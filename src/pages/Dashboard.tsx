@@ -13,15 +13,13 @@ import {
   Gift, Bell, Shield, Copy
 } from "lucide-react";
 import { Link } from "react-router-dom";
-
 const Dashboard = () => {
   return (
     <div className="min-h-screen bg-background">
   <FloatingNavbar navItems={navItems} />
-      
       <div className="pt-24 pb-20 px-4">
         <div className="container mx-auto max-w-7xl">
-          {/* Header */}
+          {}
           <div className="mb-8 space-y-4 animate-fade-in">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
@@ -35,8 +33,7 @@ const Dashboard = () => {
               </Link>
             </div>
           </div>
-
-          {/* Stats Cards */}
+          {}
           <div className="grid md:grid-cols-4 gap-6 mb-8">
             {[
               { icon: DollarSign, label: "Total Earned", value: "$3,240", color: "text-green-400" },
@@ -55,10 +52,9 @@ const Dashboard = () => {
               </Card>
             ))}
           </div>
-
-          {/* Main Content */}
+          {}
           <div className="grid lg:grid-cols-3 gap-8">
-            {/* Tabs */}
+            {}
             <div className="lg:col-span-2">
               <Tabs defaultValue="active" className="space-y-6">
                 <TabsList className="bg-card border border-border">
@@ -67,7 +63,6 @@ const Dashboard = () => {
                   <TabsTrigger value="staking">Staking</TabsTrigger>
                   <TabsTrigger value="referrals">Referrals</TabsTrigger>
                 </TabsList>
-
                 <TabsContent value="active" className="space-y-4">
                   {[
                     {
@@ -122,7 +117,6 @@ const Dashboard = () => {
                           {gig.status === "in-progress" ? "In Progress" : "In Review"}
                         </Badge>
                       </div>
-
                       <div className="space-y-3">
                         <div className="flex justify-between text-sm">
                           <span className="text-muted-foreground">Progress</span>
@@ -152,7 +146,6 @@ const Dashboard = () => {
                     </Card>
                   ))}
                 </TabsContent>
-
                 <TabsContent value="payouts" className="space-y-4">
                   <Card className="p-6 border-border bg-card">
                     <h3 className="font-display font-semibold text-lg mb-4">Payment History</h3>
@@ -180,7 +173,6 @@ const Dashboard = () => {
                     </div>
                   </Card>
                 </TabsContent>
-
                 <TabsContent value="staking" className="space-y-4">
                   <Card className="p-6 border-primary/30 bg-gradient-to-br from-primary/10 to-transparent">
                     <h3 className="font-display font-semibold text-lg mb-4">DAO Staking</h3>
@@ -189,7 +181,6 @@ const Dashboard = () => {
                         <div className="text-4xl font-bold text-primary mb-2">235 GB</div>
                         <div className="text-sm text-muted-foreground">Currently Staked</div>
                       </div>
-                      
                       <div className="space-y-2">
                         <div className="flex justify-between text-sm">
                           <span className="text-muted-foreground">Lock Period</span>
@@ -204,7 +195,6 @@ const Dashboard = () => {
                           <span className="font-semibold">18.5%</span>
                         </div>
                       </div>
-
                       <div className="flex gap-3">
                         <Button className="flex-1 bg-primary hover:bg-primary/90">
                           Stake More
@@ -216,7 +206,6 @@ const Dashboard = () => {
                     </div>
                   </Card>
                 </TabsContent>
-
                 <TabsContent value="referrals" className="space-y-4">
                   <Card className="p-6 border-border bg-card">
                     <h3 className="font-display font-semibold text-lg mb-4">
@@ -226,7 +215,6 @@ const Dashboard = () => {
                     <p className="text-sm text-muted-foreground mb-6">
                       Earn 5% of platform fees from users you refer
                     </p>
-                    
                     <div className="space-y-4">
                       <div className="p-4 rounded-lg bg-muted/50 border border-border">
                         <div className="flex items-center justify-between">
@@ -236,7 +224,6 @@ const Dashboard = () => {
                           </Button>
                         </div>
                       </div>
-
                       <div className="grid grid-cols-2 gap-4">
                         <div className="p-4 rounded-lg bg-muted/50">
                           <div className="text-2xl font-bold text-primary">12</div>
@@ -247,7 +234,6 @@ const Dashboard = () => {
                           <div className="text-sm text-muted-foreground">Earned</div>
                         </div>
                       </div>
-
                       <Button className="w-full bg-primary hover:bg-primary/90">
                         Withdraw Rewards
                       </Button>
@@ -256,10 +242,9 @@ const Dashboard = () => {
                 </TabsContent>
               </Tabs>
             </div>
-
-            {/* Sidebar */}
+            {}
             <div className="space-y-6">
-              {/* Profile Card */}
+              {}
               <Card className="p-6 border-border bg-card">
                 <div className="flex items-center gap-4 mb-4">
                   <Avatar className="h-16 w-16">
@@ -277,7 +262,6 @@ const Dashboard = () => {
                     </div>
                   </div>
                 </div>
-
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Trust Score</span>
@@ -292,15 +276,13 @@ const Dashboard = () => {
                     <span className="font-semibold text-green-400">96%</span>
                   </div>
                 </div>
-
                 <Link to="/profile">
                   <Button variant="outline" className="w-full mt-4 border-primary/30 hover:bg-primary/10">
                     View Profile
                   </Button>
                 </Link>
               </Card>
-
-              {/* Quick Actions */}
+              {}
               <Card className="p-6 border-border bg-card">
                 <h3 className="font-semibold mb-4">Quick Actions</h3>
                 <div className="space-y-2">
@@ -324,8 +306,7 @@ const Dashboard = () => {
                   </Link>
                 </div>
               </Card>
-
-              {/* Notifications */}
+              {}
               <Card className="p-6 border-border bg-card">
                 <h3 className="font-semibold mb-4 flex items-center gap-2">
                   <Bell className="h-5 w-5 text-primary" />
@@ -353,10 +334,8 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-
       <Footer />
     </div>
   );
 };
-
 export default Dashboard;
