@@ -17,7 +17,10 @@ import {
 import { useEffect, useState } from "react";
 import { handleSubmit } from "./api";
 import { toast } from "sonner";
-const Profile = () => {
+import { useParams } from "react-router-dom";
+
+const ViewProfile = () => {
+  const { id } = useParams();
   const [email, setEmail] = useState("");
   type Details = {
     name: string;
@@ -53,7 +56,7 @@ const Profile = () => {
   const dataFetch = async () => {
     const mData = await handleSubmit("sql", {
       "query": "SELECT * FROM users WHERE id = ?",
-      "params": [localStorage.getItem("id")]
+      "params": [id]
     });
 
     setEmail(mData.rows[0].email)
@@ -68,7 +71,7 @@ const Profile = () => {
   return (
     <div className="min-h-screen bg-background">
 
-      <div className="pt-10 pb-10 px-4">
+      <div className="pt-10 pb-20 px-4">
         <div className="container mx-auto max-w-6xl">
           { }
           <div className="mb-8 space-y-4 animate-fade-in">
@@ -141,7 +144,7 @@ const Profile = () => {
                           id="nickname"
                           value={json.name}
                           name="name"
-                          onChange={handleChangeText}
+                         readOnly
                           placeholder="Your display name"
                           className="bg-background border-border mt-1"
                         />
@@ -152,7 +155,7 @@ const Profile = () => {
                           id="bio"
                           value={json.des}
                           name="des"
-                          onChange={handleChangeText}
+                          readOnly
                           placeholder="Tell others about your experience and specialties..."
                           className="bg-background border-border mt-1 min-h-[100px]"
                         />
@@ -162,7 +165,7 @@ const Profile = () => {
                         <Input
                           id="location"
                           name="location"
-                          onChange={handleChangeText}
+                          readOnly
                           value={json.location}
                           placeholder="City, Country"
                           className="bg-background border-border mt-1"
@@ -173,7 +176,7 @@ const Profile = () => {
                         <Input
                           id="website"
                           name="website"
-                          onChange={handleChangeText}
+                         readOnly
                           value={json.website}
                           placeholder="https://yourportfolio.com"
                           className="bg-background border-border mt-1"
@@ -196,42 +199,9 @@ const Profile = () => {
                             </Badge>
                           ))}
                         </div>
-                        <div className="flex gap-2">
-                          <Input
-                            placeholder="Add a new skill..."
-                            name="skill"
-                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-
-                              setSkill(e.target.value)
-
-                            }}
-                            className="bg-background border-border"
-                          />
-                          <Button className="bg-primary hover:bg-primary/90" onClick={() => {
-                            var j = json.skills
-                            j.push(skill)
-                            setJson((prev) => ({
-                              ...prev,
-                              skills: j,
-                            }));
-                          }} >
-                            Add
-                          </Button>
-                        </div>
+                        
                       </Card>
-                      <Button onClick={async () => {
-                        await handleSubmit("sql", {
-                          "query": "UPDATE users SET json = ? WHERE email = ?",
-                          "params": [JSON.stringify(json), email]
-                        });
-
-                        toast.success('Profile Updated', {
-                          description: `Your Profile is updated`
-                        });
-
-                      }} className="bg-primary hover:bg-primary/90">
-                        Save Changes
-                      </Button>
+                      
                     </div>
                   </Card>
                 </TabsContent>
@@ -245,4 +215,4 @@ const Profile = () => {
     </div>
   );
 };
-export default Profile;
+export default ViewProfile;

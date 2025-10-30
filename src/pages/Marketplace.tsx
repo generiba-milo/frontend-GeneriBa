@@ -1,169 +1,94 @@
-import { FloatingNavbar } from "@/components/aceternity/FloatingNavbar";
-import { navItems } from "@/components/navItems";
-import Footer from "@/components/Footer";
+"use client";
+
 import GigCard from "@/components/GigCard";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Search, SlidersHorizontal, TrendingUp } from "lucide-react";
-import { useState } from "react";
-const MOCK_GIGS = [
-  {
-    id: "1",
-    title: "Build NFT Marketplace Landing Page",
-    description: "Looking for a React developer to build a modern landing page for an NFT marketplace. Must have experience with Web3 integration.",
-    payout: "500",
-    crypto: "USDC",
-    poster: "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb",
-    trustLevel: 3,
-    skills: ["React", "Web3", "TypeScript", "Tailwind"],
-    isGroup: false,
-    deadline: "5 days"
-  },
-  {
-    id: "2",
-    title: "Smart Contract Audit",
-    description: "Need experienced Solidity auditor for DeFi protocol. Must provide detailed report with vulnerability assessment.",
-    payout: "2000",
-    crypto: "ETH",
-    poster: "0x8ba1f109551bD432803012645Ac136ddd64DBA72",
-    trustLevel: 5,
-    skills: ["Solidity", "Security", "DeFi"],
-    isGroup: false,
-    deadline: "10 days"
-  },
-  {
-    id: "3",
-    title: "DAO Governance Dashboard",
-    description: "Build a comprehensive governance dashboard for our DAO. Need to display proposals, voting, treasury stats.",
-    payout: "1200",
-    crypto: "SOL",
-    poster: "0x1234567890abcdef1234567890abcdef12345678",
-    trustLevel: 4,
-    skills: ["React", "GraphQL", "DAO", "UI/UX"],
-    isGroup: true,
-    deadline: "2 weeks"
-  },
-  {
-    id: "4",
-    title: "Crypto Trading Bot Development",
-    description: "Create automated trading bot for major DEXs. Must include backtesting and risk management features.",
-    payout: "3500",
-    crypto: "USDC",
-    poster: "0xabcdef1234567890abcdef1234567890abcdef12",
-    trustLevel: 5,
-    skills: ["Python", "Trading", "APIs", "ML"],
-    isGroup: false,
-    deadline: "3 weeks"
-  },
-  {
-    id: "5",
-    title: "Write Web3 Technical Documentation",
-    description: "Need technical writer to create comprehensive docs for our DeFi protocol. Experience with Solana required.",
-    payout: "800",
-    crypto: "SOL",
-    poster: "0x9876543210fedcba9876543210fedcba98765432",
-    trustLevel: 2,
-    skills: ["Technical Writing", "DeFi", "Solana"],
-    isGroup: false,
-    deadline: "1 week"
-  },
-  {
-    id: "6",
-    title: "NFT Collection Design (50 Pieces)",
-    description: "Design unique NFT collection with consistent theme. Need original artwork, no AI generation.",
-    payout: "1500",
-    crypto: "ETH",
-    poster: "0xfedcba0987654321fedcba0987654321fedcba09",
-    trustLevel: 4,
-    skills: ["Design", "NFT", "Illustration", "Branding"],
-    isGroup: true,
-    deadline: "2 weeks"
-  }
-];
-const SKILL_FILTERS = ["React", "Solidity", "Design", "Web3", "Python", "Writing", "DeFi", "DAO"];
+import { TrendingUp } from "lucide-react";
+import { useEffect, useState } from "react";
+import { handleSubmit } from "./api";
+import Loading from "./loading";
+import { useWallet } from "@solana/wallet-adapter-react";
+import ManualWalletModal from "./manualmodel";
+
 const Marketplace = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
-  const toggleSkill = (skill: string) => {
-    setSelectedSkills(prev => 
-      prev.includes(skill) 
-        ? prev.filter(s => s !== skill)
-        : [...prev, skill]
-    );
+  const { connected, publicKey } = useWallet();
+  const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  type Gig = {
+    id: string;
+    title: string;
+    description: string;
+    payout: string;
+    crypto: string;
+    poster: string;
+    trustLevel: number;
+    skills: string;
+    isGroup: boolean;
+    deadline: string;
   };
-  return (
-    <div className="min-h-screen bg-background">
-  <FloatingNavbar navItems={navItems} />
-      <div className="pt-24 pb-20 px-4">
-        <div className="container mx-auto">
-          {}
-          <div className="mb-8 space-y-4 animate-fade-in">
+
+  const [gigs, setGigs] = useState<Gig[]>([]);
+
+  useEffect(() => {
+    dataFetch();
+  }, []);
+
+  const dataFetch = async () => {
+    try {
+      const mData = await handleSubmit("sql", {
+        query: "SELECT * FROM gigs WHERE assign IS NULL",
+        params: [],
+      });
+      setGigs(mData.rows);
+    } catch (error) {
+      console.error("Error fetching gigs:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return loading ? (
+    <Loading />
+  ) : (
+    <div className="min-h-screen bg-black text-white flex flex-col">
+      {/* Navbar (optional) */}
+      {/* <FloatingNavbar navItems={navItems} /> */}
+
+      <div className="flex-grow pt-2 pb-12 px-0 sm:pt-6 sm:pb-24 sm:px-4 md:px-8">
+        <div className="container mx-auto max-w-7xl">
+          {/* Header */}
+          <div className="mb-8 flex flex-wrap items-center justify-between gap-4 animate-fade-in">
             <div className="flex items-center gap-2">
               <TrendingUp className="h-8 w-8 text-primary" />
-              <h1 className="font-display text-4xl font-bold">Gig Marketplace</h1>
+              <h1 className="font-display text-3xl md:text-4xl font-bold">
+                Gig Marketplace
+              </h1>
             </div>
-            <p className="text-xl text-muted-foreground">
-              Discover opportunities. Build your reputation. Earn in crypto.
-            </p>
-          </div>
-          {}
-          <div className="mb-8 space-y-4 animate-fade-in-up">
-            {}
-            <div className="flex gap-4">
-              <div className="flex-1 relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                <Input 
-                  placeholder="Search gigs by title, skills, or description..."
-                  className="pl-10 bg-card border-border"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
-              </div>
-              <Button variant="outline" className="border-primary/30 hover:bg-primary/10">
-                <SlidersHorizontal className="h-5 w-5 mr-2" />
-                Filters
-              </Button>
-            </div>
-            {}
-            <div className="flex flex-wrap gap-2">
-              {SKILL_FILTERS.map((skill) => (
-                <Badge
-                  key={skill}
-                  variant={selectedSkills.includes(skill) ? "default" : "outline"}
-                  className={`cursor-pointer transition-all ${
-                    selectedSkills.includes(skill) 
-                      ? "bg-primary hover:bg-primary/90" 
-                      : "hover:bg-primary/10"
-                  }`}
-                  onClick={() => toggleSkill(skill)}
-                >
-                  {skill}
-                </Badge>
-              ))}
+
+            {/* Wallet button */}
+            <div>
+              {!connected ? (
+                <>
+                  <button
+                    onClick={() => setOpen(true)}
+                    className="bg-white text-black px-5 py-2 rounded-xl font-semibold hover:bg-gray-800 hover:text-white transition"
+                  >
+                    Connect Wallet
+                  </button>
+                  <ManualWalletModal open={open} onClose={() => setOpen(false)} />
+                </>
+              ) : (
+                <button className="bg-white text-black px-5 py-2 rounded-xl font-semibold hover:bg-gray-800 hover:text-white transition">
+                  {publicKey?.toBase58().slice(0, 4)}...
+                  {publicKey?.toBase58().slice(-4)}
+                </button>
+              )}
             </div>
           </div>
-          {}
-          <div className="mb-8 p-4 rounded-lg bg-gradient-to-r from-primary/10 via-primary/5 to-transparent border border-primary/20 animate-fade-in">
-            <div className="flex flex-wrap gap-6 text-sm">
-              <div>
-                <span className="text-muted-foreground">Active Gigs:</span>{" "}
-                <span className="font-bold text-primary">347</span>
-              </div>
-              <div>
-                <span className="text-muted-foreground">Total Payout:</span>{" "}
-                <span className="font-bold text-primary">$125K+</span>
-              </div>
-              <div>
-                <span className="text-muted-foreground">This Week:</span>{" "}
-                <span className="font-bold text-primary">DAO Level 2+ = 0% Fees</span>
-              </div>
-            </div>
-          </div>
-          {}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {MOCK_GIGS.map((gig, i) => (
-              <div 
+
+          {/* Gig Cards Grid */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-full overflow-hidden">
+            {gigs.map((gig, i) => (
+              <div
                 key={gig.id}
                 className="animate-fade-in-up"
                 style={{ animationDelay: `${i * 50}ms` }}
@@ -172,16 +97,20 @@ const Marketplace = () => {
               </div>
             ))}
           </div>
-          {}
-          <div className="mt-12 text-center">
-            <Button variant="outline" size="lg" className="border-primary/30 hover:bg-primary/10">
-              Load More Gigs
-            </Button>
-          </div>
+
+          {/* Empty State */}
+          {gigs.length === 0 && (
+            <div className="mt-16 text-center text-muted-foreground">
+              No gigs found.
+            </div>
+          )}
         </div>
       </div>
-      <Footer />
+
+      {/* Footer */}
+      {/* <Footer /> */}
     </div>
   );
 };
+
 export default Marketplace;

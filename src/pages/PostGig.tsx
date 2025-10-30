@@ -16,7 +16,7 @@ const PostGig = () => {
   const [step, setStep] = useState(1);
   return (
     <div className="min-h-screen bg-background">
-  <FloatingNavbar navItems={navItems} />
+ 
       <div className="pt-24 pb-20 px-4">
         <div className="container mx-auto max-w-5xl">
           {}
@@ -354,7 +354,7 @@ const PostGig = () => {
           </div>
         </div>
       </div>
-      <Footer />
+     
     </div>
   );
 };

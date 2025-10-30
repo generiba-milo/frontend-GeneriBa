@@ -3,7 +3,7 @@
 // Supports Firebase auth, wallet auth, demo mode, and guest mode (no credentials needed)
 
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
-import { 
+import {
   User as FirebaseUser,
   signInWithPopup,
   signOut as firebaseSignOut,
@@ -13,6 +13,7 @@ import { auth, googleProvider, hasFirebaseConfig } from '@/config/firebase';
 import { authService } from '@/services/auth.service';
 import { setAuthToken, removeAuthToken } from '@/services/api';
 import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
+import { handleSubmit } from '@/pages/api';
 
 // User type
 export interface User {
@@ -57,14 +58,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     // If Firebase is not configured, create a guest user immediately
     if (!hasFirebaseConfig) {
       console.log('🔓 Guest mode enabled - No Firebase configuration found');
-      setUser({
-        uid: 'guest-user',
-        email: 'guest@generiba.local',
-        displayName: 'Guest User',
-        photoURL: null,
-        emailVerified: false,
-        isGuest: true
-      });
+
       setLoading(false);
       return;
     }
@@ -75,17 +69,17 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         // User is signed in
         try {
           const token = await firebaseUser.getIdToken();
-          
+
           // Store token
           setAuthToken(token);
-          
+
           // Send to backend to create/update user
           try {
             await authService.login({ firebaseToken: token });
           } catch (err) {
             console.error('Backend login failed:', err);
           }
-          
+
           // Set user state
           setUser({
             uid: firebaseUser.uid,
@@ -95,6 +89,26 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             emailVerified: firebaseUser.emailVerified,
             isGuest: false
           });
+
+
+          const main2 = await handleSubmit("sql", {
+            "query": "SELECT * FROM users WHERE email = ?",
+            "params": [firebaseUser.email]
+          });
+
+
+          if (main2.rows.length == 0) {
+            const main = await handleSubmit("sql", {
+              "query": "INSERT INTO users (token, email) VALUES (?, ?)",
+              "params": [token, firebaseUser.email]
+            });
+            console.log(main)
+            localStorage.setItem("id",main2.rows.insertId)
+
+          }else{
+            localStorage.setItem("id",main2.rows[0].id)
+          }
+
         } catch (err) {
           console.error('Auth state error:', err);
           setError('Failed to authenticate');
@@ -104,7 +118,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         setUser(null);
         removeAuthToken();
       }
-      
+
       setLoading(false);
     });
 
@@ -122,16 +136,16 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     try {
       setError(null);
       setLoading(true);
-      
+
       const result = await signInWithPopup(auth, googleProvider);
       const token = await result.user.getIdToken();
-      
+
       // Store token
       setAuthToken(token);
-      
+
       // Send to backend
-      await authService.login({ firebaseToken: token });
-      
+      // await authService.login({ firebaseToken: token });
+
       // User state will be updated by onAuthStateChanged listener
     } catch (err: any) {
       console.error('Google sign-in error:', err);
@@ -153,16 +167,16 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     try {
       setError(null);
       setLoading(true);
-      
+
       // Sign out from backend
-      await authService.logout();
-      
+      // await authService.logout();
+
       // Sign out from Firebase
       await firebaseSignOut(auth);
-      
+
       // Remove token
       removeAuthToken();
-      
+
       // User state will be updated by onAuthStateChanged listener
     } catch (err: any) {
       console.error('Sign out error:', err);
@@ -189,11 +203,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     try {
       const db = getFirestore();
       const userRef = doc(db, 'users', user.uid);
-      
+
       // Get existing user data
       const userDoc = await getDoc(userRef);
       const existingData = userDoc.exists() ? userDoc.data() : {};
-      
+
       // Update with wallet address
       await setDoc(userRef, {
         ...existingData,
@@ -204,10 +218,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         walletAddress,
         updatedAt: new Date().toISOString(),
       }, { merge: true });
-      
+
       // Update local user state
       setUser({ ...user, walletAddress });
-      
+
       console.log('✅ Wallet linked to Firebase user:', walletAddress);
     } catch (err: any) {
       console.error('Wallet linking error:', err);

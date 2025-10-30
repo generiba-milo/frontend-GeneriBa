@@ -155,7 +155,7 @@ const LandingNew = () => {
   ];
   return (
     <div className="min-h-screen bg-background overflow-hidden">
-      <FloatingNavbar navItems={navItems} />
+
       <HeroParallax>
         <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden pt-32 md:pt-40">
           <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
@@ -406,7 +406,7 @@ const LandingNew = () => {
           </BackgroundGradient>
         </div>
       </section>
-      <Footer />
+     
     </div>
   );
 };

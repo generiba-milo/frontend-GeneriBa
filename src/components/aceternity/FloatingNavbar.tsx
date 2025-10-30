@@ -169,10 +169,7 @@ export const FloatingNavbar = ({
                   <User className="mr-2 h-4 w-4" />
                   Profile
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => navigate('/dashboard')}>
-                  <Wallet className="mr-2 h-4 w-4" />
-                  Dashboard
-                </DropdownMenuItem>
+                
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={handleLogout} className="text-red-400">
                   <LogOut className="mr-2 h-4 w-4" />

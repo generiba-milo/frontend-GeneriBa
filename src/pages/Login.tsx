@@ -129,7 +129,7 @@ const Login = () => {
                 <div className="text-sm">
                   <p className="font-medium">Instant Crypto Payouts</p>
                   <p className="text-muted-foreground text-xs">
-                    Receive payment in ETH, SOL, or USDC
+                    Receive payment in SOL
                   </p>
                 </div>
               </div>

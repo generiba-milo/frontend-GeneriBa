@@ -24,7 +24,7 @@ const Landing = () => {
   const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-background">
-      <FloatingNavbar navItems={navItems} />
+ 
       {}
       <section className="relative pt-40 pb-20 px-4 overflow-hidden">
         {}
@@ -232,7 +232,7 @@ const Landing = () => {
           </Card>
         </div>
       </section>
-      <Footer />
+    
     </div>
   );
 };

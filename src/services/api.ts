@@ -2,6 +2,7 @@
 // Handles all HTTP requests with authentication
 
 import { API_CONFIG } from '@/config/api.config';
+import { handleSubmit } from '@/pages/api';
 
 // Types
 export interface ApiError {
@@ -22,8 +23,9 @@ const getAuthToken = (): string | null => {
 };
 
 // Set auth token in localStorage
-export const setAuthToken = (token: string): void => {
+export const setAuthToken = async (token: string): Promise<void> => {
   localStorage.setItem('auth_token', token);
+  
 };
 
 // Remove auth token
@@ -37,7 +39,7 @@ async function fetchWithAuth<T>(
   options: RequestInit = {}
 ): Promise<T> {
   const token = getAuthToken();
-  
+
   const config: RequestInit = {
     ...options,
     headers: {
@@ -58,7 +60,7 @@ async function fetchWithAuth<T>(
       const error = await response.json().catch(() => ({
         message: response.statusText || 'An error occurred'
       }));
-      
+
       throw {
         message: error.message || 'Request failed',
         status: response.status,
@@ -74,7 +76,7 @@ async function fetchWithAuth<T>(
     if (error.status) {
       throw error;
     }
-    
+
     throw {
       message: error.message || 'Network error occurred',
       code: 'NETWORK_ERROR'
@@ -130,7 +132,7 @@ export const api = {
   // Upload file (multipart/form-data)
   upload: <T>(endpoint: string, formData: FormData, options?: RequestInit): Promise<T> => {
     const token = getAuthToken();
-    
+
     return fetch(`${API_CONFIG.baseURL}${endpoint}`, {
       ...options,
       method: 'POST',

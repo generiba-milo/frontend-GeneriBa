@@ -15,7 +15,7 @@ interface GigCardProps {
   crypto: string;
   poster: string;
   trustLevel: number;
-  skills: string[];
+  skills: string;
   isGroup?: boolean;
   deadline?: string;
 }
@@ -38,13 +38,6 @@ const GigCard = ({
         containerClassName="group relative overflow-hidden"
         className="border border-border bg-gradient-to-br from-card to-card/50 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1 w-full"
       >
-        {/* Trust Badge */}
-        <div className="absolute top-4 right-4 z-10">
-          <Badge variant="secondary" className="bg-primary/20 text-primary border-primary/30">
-            <Shield className="h-3 w-3 mr-1" />
-            Level {trustLevel}
-          </Badge>
-        </div>
 
         <div className="p-6 space-y-4">
           {/* Header */}
@@ -57,63 +50,52 @@ const GigCard = ({
 
           {/* Skills */}
           <div className="flex flex-wrap gap-2">
-            {skills.slice(0, 3).map((skill) => (
+            {skills.split(",").slice(0, 3).map((skill) => (
               <Badge key={skill} variant="outline" className="text-xs">
                 {skill}
               </Badge>
             ))}
-            {skills.length > 3 && (
+            {skills.split(",").length > 3 && (
               <Badge variant="outline" className="text-xs">
-                +{skills.length - 3}
+                +{skills.split(",").length - 3}
               </Badge>
             )}
           </div>
 
           {/* Meta Info */}
           <div className="flex items-center gap-4 text-sm text-muted-foreground">
-            {isGroup && (
-              <div className="flex items-center gap-1">
-                <Users className="h-4 w-4" />
-                <span>Group</span>
-              </div>
-            )}
+
             <div className="flex items-center gap-1">
               <Clock className="h-4 w-4" />
-              <span>{deadline}</span>
+              <span>{deadline} Days</span>
             </div>
           </div>
 
           {/* Footer */}
           <div className="flex items-center justify-between pt-4 border-t border-border">
             <div className="flex items-center gap-2">
-              <Avatar className="h-8 w-8">
-                <AvatarFallback className="bg-primary/20 text-primary text-xs">
-                  {poster.substring(0, 2).toUpperCase()}
-                </AvatarFallback>
-              </Avatar>
-              <span className="text-xs text-muted-foreground font-mono">
-                {poster.substring(0, 8)}...
-              </span>
+
+              <MagneticButton className="w-full">
+                <Button className="w-full bg-primary hover:bg-primary/90 shadow-lg shadow-primary/20" size="sm">
+                  Apply Now
+                </Button>
+              </MagneticButton>
             </div>
-            
+
             <div className="flex items-center gap-2">
               <div className="text-right">
                 <div className="flex items-center gap-1 text-lg font-bold text-primary">
-                  <DollarSign className="h-4 w-4" />
+                 
                   {payout}
                 </div>
-                <span className="text-xs text-muted-foreground">{crypto}</span>
+                <span className="text-xs text-muted-foreground">SOL</span>
               </div>
             </div>
           </div>
 
-          <MagneticButton className="w-full">
-            <Button className="w-full bg-primary hover:bg-primary/90 shadow-lg shadow-primary/20" size="sm">
-              Apply Now
-            </Button>
-          </MagneticButton>
+
         </div>
-  </ThreeDCard>
+      </ThreeDCard>
     </Link>
   );
 };

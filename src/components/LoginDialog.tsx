@@ -209,84 +209,10 @@ export function LoginDialog({ open, onOpenChange }: LoginDialogProps) {
             </div>
           )}
 
-          {/* Divider */}
-          {user && !skipGoogle && (
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t border-border" />
-              </div>
-              <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-card px-2 text-muted-foreground">Then</span>
-              </div>
-            </div>
-          )}
+          
+          
 
-          {/* Step 2: Wallet Connection */}
-          {(user || skipGoogle) && (
-            <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <div className={`flex items-center justify-center w-8 h-8 rounded-full ${
-                  connected ? 'bg-green-500' : 'bg-primary'
-                }`}>
-                  {connected ? (
-                    <CheckCircle2 className="w-5 h-5 text-white" />
-                  ) : (
-                    <span className="text-white font-bold">{skipGoogle ? '1' : '2'}</span>
-                  )}
-                </div>
-                <h3 className="text-lg font-semibold">Connect Solana Wallet</h3>
-              </div>
-
-              {!connected ? (
-                <div className="space-y-3">
-                  <div className="wallet-adapter-button-wrapper">
-                    <WalletMultiButton className="!w-full !bg-gradient-to-r !from-primary !to-purple-600 hover:!from-primary/90 hover:!to-purple-600/90 !rounded-lg !h-12 !text-base !font-semibold !transition-all !shadow-lg !shadow-primary/25" />
-                  </div>
-                  <p className="text-xs text-center text-muted-foreground">
-                    Supports Phantom, Solflare, Coinbase Wallet, Ledger & more
-                  </p>
-                </div>
-              ) : (
-                <div className="flex items-center gap-3 p-4 rounded-lg bg-green-500/10 border border-green-500/20">
-                  <Wallet className="w-5 h-5 text-green-500" />
-                  <div className="flex-1">
-                    <p className="font-medium text-green-500">Wallet Connected</p>
-                    <p className="text-sm text-muted-foreground font-mono">
-                      {publicKey?.toString().slice(0, 8)}...{publicKey?.toString().slice(-8)}
-                    </p>
-                  </div>
-                  <CheckCircle2 className="w-6 h-6 text-green-500" />
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* Demo Mode Option - Only show when login fails or Firebase/Wallet unavailable */}
-          {(loginFailed || (!hasFirebaseConfig && !connected) || walletConnectionFailed) && (
-            <div className="space-y-3">
-              <Separator className="my-4" />
-              <div className="text-center p-4 bg-amber-500/10 border border-amber-500/30 rounded-lg">
-                <p className="text-sm font-semibold text-amber-500 mb-2">
-                  Having trouble logging in?
-                </p>
-                <p className="text-xs text-muted-foreground mb-3">
-                  Try demo mode to explore the platform without authentication
-                </p>
-                <Button
-                  variant="outline"
-                  onClick={handleDemoMode}
-                  className="w-full border-amber-500/50 hover:bg-amber-500/10"
-                >
-                  <Play className="w-4 h-4 mr-2" />
-                  Enter Demo Mode
-                </Button>
-                <p className="text-xs text-muted-foreground mt-2">
-                  Pre-filled demo account • No wallet needed • Test all features
-                </p>
-              </div>
-            </div>
-          )}
-
+       
           {/* Terms */}
           <p className="text-xs text-center text-muted-foreground mt-6 pt-4 border-t border-border">
             By connecting, you agree to our{' '}

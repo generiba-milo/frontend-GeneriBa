@@ -54,7 +54,7 @@ const FAQS = [
 const Help = () => {
   return (
     <div className="min-h-screen bg-background">
-  <FloatingNavbar navItems={navItems} />
+  
       <div className="pt-24 pb-20 px-4">
         <div className="container mx-auto max-w-6xl">
           {}
@@ -156,7 +156,7 @@ const Help = () => {
           </Card>
         </div>
       </div>
-      <Footer />
+     
     </div>
   );
 };

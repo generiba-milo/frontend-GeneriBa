@@ -259,7 +259,7 @@ const AppLayout = ({ children, showSidebar = true, showFooter = true }: AppLayou
         </main>
 
         {/* Footer */}
-        {showFooter && <Footer />}
+       
       </div>
     </div>
   );
